@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+    <title>Register Continued</title>
+</head>
+<body>
+        <div class="head">
+            <h1>{{ session['name'] }}</h1>
+            <div>
+                <a href="/logout">Logout</a>
+                <a href="/{{ session['id'] }}/profile">
+                <button>
+                    <img src = "{{ url_for('static',filename='media/user_picture.jpg') }}">
+                </button>
+            </a>
+            </div>
+        </div>
+        <div class="container">
+        <div class="body">
+            <div class="goals">
+                <h3>Goals</h3><a href="/{{ session['id'] }}/goal/new">Create a Goal</a>
+                <table>
+                    <th>Name: </th>
+                    <th>Type: </th>
+                    <th>Achieve By: </th>
+                    <th>Milestones:</th>
+                    {% for goal in goals %}
+                        </tr>
+                            <td><a href="/goal/display/{{ goal['id'] }}"><h3>{{ goal.goal_name }}</h3></a>
+                            <p id="text">{{ goal.description }}</p></td>
+                            <td>{{ goal.goal_type }}</td>
+                            <td>{{ goal.goal_end }}</td>
+                            <td>{{ goal.milestones }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="profile">
+                <div class="picture">
+                <img src = "{{ url_for('static',filename='media/user_picture.jpg') }}">
+                <a href="/{{ session['id'] }}/profile/edit"><button>Edit Profile</button></a>
+                </div>
+                <h3>{{ session.name }}</h3>
+                <h5>Member since: {{ session['created_at'] }}</h5>
+                <label for="bio">Bio: </label>
+                <p>{{ session['bio'] }}</p>
+                <p>Birthday: {{ session.birthday }}</p>
+                <p>City: {{ session.city }}</p>
+                <p>Gender: {{ session.gender }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

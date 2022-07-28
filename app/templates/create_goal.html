@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/create_goal.css') }}">
+    <title>New Goal</title>
+</head>
+<body>
+    <div class="head">
+        <h1>{{ session['name'] }}</h1>
+        <div>
+            <a href="/{{ session['id'] }}/dashboard">Dashboard |</a>
+            <a href="/logout"> Logout</a>
+            <a href="/{{ session['id'] }}/profile">
+                <button>
+                    <img src = "{{ url_for('static',filename='media/stock_user.jpeg') }}">
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Create a Goal!</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}                            
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form action="/goal/create" method="post">
+            <input type="hidden" name="user_id" value="{{ session['id'] }}">
+            <label for="name">Name:</label>
+            <input type="text" name="goal_name">
+            <label for="type">Goal Type:</label>
+            <select name="goal_type">
+                <option value="professional">Professional</option>
+                <option value="personal">Personal</option>
+                <option value="tertiary">Tertiary</option>
+                <option value="other">Other</option>
+            </select>
+            <label for="description">Notes: </label>
+            <input type="text" name="goal_description">
+            <label for="start">Start Date: </label>
+            <input type="date" name="goal_start">
+            <label for="end">End Date: </label>
+            <input type="date" name="goal_end">
+            <input type="submit" value="Create!">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/create_goal.css') }}">
+    <title>Register Continued</title>
+</head>
+<body>
+    <div class="head">
+        <h1>{{ session['name'] }}</h1>
+        <div>
+            <a href="/{{ session['id'] }}/dashboard">Dashboard |</a>
+            <a href="/logout"> Logout</a>
+            <a href="/{{ session['id'] }}/profile">
+                <button>
+                    <img src = "{{ url_for('static',filename='media/user_picture.jpg') }}">
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+    <form action="/profile/change" enctype="multipart/form-data" method="post">
+        <div>
+            <img id="img" src = "{{ url_for('static',filename='media/user_picture.jpg') }}">
+            <input type="file" name="file" accept="image/*"/>
+            <h1>{{ session.name }}</h1>
+            <h5>Member since {{ session['created_at'] }}</h5>
+            <label for="bio">Bio:</label>
+            <textarea name="bio" rows="4" cols="50">
+                {{ session['bio'] }}
+            </textarea>
+            <label for="birthday">Birthday: </label>
+            <input type="date" name="birthday" value="{{ session['birthday'] }}">
+            <label for="city">City: </label>
+            <input type="text" name="city" value="{{ session['city'] }}">
+            <div class="gender">
+                <label for="gender">Gender: </label>
+                <select name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <input type="hidden" name="id" value="{{ session['id'] }}">
+            <input type="submit" value="Change">
+            <a href="/{{ session['id'] }}/profile"><button>Cancel</button></a>
+        </div>
+    </form>
+</body>
+</html>

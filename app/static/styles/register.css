@@ -1,0 +1,40 @@
+*   {
+    padding: none;
+    margin: none;
+}
+
+body    {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.regi   {
+    border: solid 2px black;
+    margin-top: 10%;
+}
+
+form    {
+    margin: auto;
+    display: flex;
+    margin-left: auto;
+}
+
+form div    {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rad    {
+    flex-direction: row;
+    margin: 0px;
+}
+
+form div input  {
+    margin-bottom: 5px;
+}
+
+h3  {
+    margin: 10px;
+}

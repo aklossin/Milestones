@@ -1,0 +1,84 @@
+*   {
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+}
+
+.container {
+    background-color: aliceblue;
+    padding: 0px 10px;
+    border: solid 2px black;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.head   {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0px 10px;
+    background-color:black;
+    color: white;
+}
+
+.head div   {
+    display: flex;
+    align-items: center;
+}
+
+.head a, button    {
+    height: 30px;
+    width: 75px;
+    margin-right: 5px; 
+}
+
+.head img   {
+    height: 25px;
+    width: 25px
+}
+
+body    {
+    margin: 5% 10%;
+    background-color: grey;
+}
+
+.body   {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-around;
+}
+
+.picture button, a  {
+    width: 60px;
+    height: auto;
+    font-size: 15px;
+}
+
+#text   {
+    font-size: 18px;
+}
+
+form    {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+}
+
+form label, input, a  {
+    margin: 10px 0px;
+
+}
+
+#img    {
+    height: 150px;
+    width: 150px;
+}
+
+h1  {
+    font-size: 24px;
+}

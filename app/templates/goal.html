@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+    <title>Goal</title>
+</head>
+<body>
+    <div class="head">
+        <h1>{{ session['name'] }}</h1>
+        <div>
+            <a href="/{{ session['id'] }}/dashboard">Dashboard |</a>
+            <a href="/logout"> Logout</a>
+            <a href="/{{ session['id'] }}/profile">
+                <button>
+                    <img src = "{{ url_for('static',filename='media/stock_user.jpeg') }}">
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+        <div class="goal">
+            <h1>{{ goal['goal_name'] }}</h1>
+            <label for="type">Type: {{ goal['goal_type'] }}</label>
+            <label for="description">Description: {{ goal['goal_description'] }}</label>
+            <label for="date">Date: {{ goal['goal_start'] }} to {{ goal['goal_end'] }}</label>
+            <div>
+                <a href="/edit/{{ goal['id'] }}">Change Goal</a>
+                <a href="/delete/{{ goal['id'] }}">DELETE</a>
+            </div>
+        </div>
+        <div class="milestone">
+            <h3>Milestones</h3>
+            <a href="/{{ goal['id'] }}/milestone/new">Add Milestone</a> 
+            <table>
+                <th>Name</th>
+                <th>End</th>
+                <th>Status</th>
+                <th>Date Completed</th>
+                {% for milestone in milestones %}
+                    </tr>
+                        <td><a href="/milestone/display/{{ milestone.id }}">{{ milestone.stone_name }}</a></td>
+                        <td><p>{{ milestone.target_date }}</p></td>
+                    </tr>
+                {% endfor %}
+            </table>   
+        </div>
+        </div>
+    </div>
+</body>
+</html>

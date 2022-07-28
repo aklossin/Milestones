@@ -1,0 +1,20 @@
+*   {
+    margin: 0px;
+    padding: 0px;
+}
+
+.head   {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-bottom: 5%;
+}
+.head a, button    {
+    height: 30px;
+    width: 75px;
+    margin-right: 5px; 
+}
+
+body    {
+    margin: 5% 10%;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/create_goal.css') }}">
+    <title>Goal</title>
+</head>
+<body>
+    <div class="head">
+        <h2>{{ session['name'] }}</h2>
+        <div>
+            <a href="/{{ session['id'] }}/dashboard">Dashboard |</a>
+            <a href="/logout"> Logout</a>
+            <a href="/{{ session['id'] }}/profile">
+                <button>
+                    <img src = "{{ url_for('static',filename='media/stock_user.jpeg') }}">
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+    <form action="/change/goal" method="post">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+               <ul>
+                    {% for message in messages %}                            
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <input type="hidden" name="id" value="{{ goal['id'] }}">
+        <label for="name">Goal: </label>
+        <input type="text" name="goal_name" value="{{ goal['goal_name'] }}">
+        <label for="type">Type: </label>
+        <select name="goal_type">
+            <option value="professional">Professional</option>
+            <option value="personal">Personal</option>
+            <option value="tertiary">Tertiary</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="description">Description: </label>
+        <textarea name="goal_description" rows="4" cols="50">
+            {{ goal['goal_description'] }}
+        </textarea>
+        <label for="date">Date: </label>
+        <div>
+            <input type="date" name="goal_start" value="{{ goal['goal_start'] }}">
+            <label for="date"> - </label>
+            <input type="date" name="goal_end" value="{{ goal['goal_end'] }}">
+        </div>
+        <input type="submit" value="Change">
+    </form>
+    <a href="/goal/display/{{ goal['id'] }}">Cancel</a>
+    </div>
+</body>
+</html>

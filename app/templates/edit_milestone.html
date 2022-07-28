@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/create_goal.css') }}">
+    <title>Milestone</title>
+</head>
+<body>
+    <div class="head">
+        <h2>{{ session['name'] }}</h2>
+        <div>
+            <a href="/{{ session['id'] }}/dashboard">Dashboard |</a>
+            <a href="/logout"> Logout</a>
+            <a href="/{{ session['id'] }}/profile">
+                <button>
+                    <img src = "{{ url_for('static',filename='media/stock_user.jpeg') }}">
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+    <form action="/change/milestone" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="stone_name" value="{{ milestone['stone_name'] }}">
+        <label for="description">Description: </label>
+        <textarea name="stone_description" rows="4" cols="50">
+            {{ milestone['stone_description'] }}
+        </textarea>
+        <label for="target">Projected Completion Date: </label>
+        <input type="date" name="target_date" value="{{ milestone['target_date'] }}">
+        <label for="end">Date Completed: {{ milestone['completed_date'] }}</label>
+        <input type="date" name="completed_date">
+        <input type="hidden" name="id" value="{{ milestone['id'] }}">
+        <input type="submit" value="Change">
+    </form>
+    <div>
+        <a href="/milestone/display/{{ milestone['id'] }}">Cancel Changes</a>
+        <a href="/delete/milestone/{{ milestone['id'] }}">DELETE</a>
+    </div>
+    </div>
+</body>
+</html>
